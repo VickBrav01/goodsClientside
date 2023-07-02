@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { utils } from "../utils/utils";
 import "./Shop.css"; // Import your custom CSS for styling
 
 function Shop() {
@@ -7,7 +8,7 @@ function Shop() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/Products")
+      .get(`${utils}/Products`)
       .then((response) => {
         setProducts(response.data);
       })

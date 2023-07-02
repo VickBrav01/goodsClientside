@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { userSchema } from "./FormValidation";
+import { utils } from "../utils/utils";
+
 import Axios from "axios";
 import "./Login.css";
 
@@ -26,19 +28,17 @@ function Login() {
     userSchema
       .validate(credentials)
       .then((data) => {
-        Axios.post("http://localhost:3000/users/login", data).then(
-          (response) => {
-            if (response.data.token) {
-              setModalOpen(true);
-              setTimeout(() => {
-                navigate("/Product");
-              }, 3000);
-              console.log(response.data);
-            } else {
-              alert("Wrong Credentials");
-            }
+        Axios.post(`${utils}/users/login`, data).then((response) => {
+          if (response.data.token) {
+            setModalOpen(true);
+            setTimeout(() => {
+              navigate("/Product");
+            }, 3000);
+            console.log(response.data);
+          } else {
+            alert("Wrong Credentials");
           }
-        );
+        });
       })
       .catch((error) => {
         alert("Wrong Credentials");

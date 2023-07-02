@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { utils } from "../utils/utils";
+
 import "./ProductCategories.css";
 
 function ProductCategories() {
@@ -13,7 +15,7 @@ function ProductCategories() {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/categories");
+      const response = await axios.get(`${utils}/categories`);
       setCategories(response.data);
     } catch (error) {
       console.error("Error fetching categories:", error);
@@ -23,9 +25,7 @@ function ProductCategories() {
   const handleCategoryClick = async (id) => {
     console.log(id);
     try {
-      const response = await axios.get(
-        `http://localhost:3000/categories/${id}/products`
-      );
+      const response = await axios.get(`${utils}/categories/${id}/products`);
       setProducts(response.data);
       console.log(response.data);
       setSelectedCategory(id);

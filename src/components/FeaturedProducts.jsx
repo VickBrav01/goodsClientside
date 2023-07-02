@@ -1,39 +1,7 @@
-// import React, { useEffect, useState } from "react";
-// import axios from "axios";
-// import "./FeaturedProducts.css";
-
-// function FeaturedProducts() {
-//   const [products, setProducts] = useState([]);
-
-//   const fetchProducts = async () => {
-//     try {
-//       const response = await axios.get("http://localhost:3000/Products");
-//       setProducts(response.data);
-//     } catch (error) {
-//       console.error("Error fetching products:", error);
-//     }
-//   };
-//   useEffect(() => {
-//     fetchProducts();
-//   }, []);
-
-//   return (
-//     <div className="featured-products">
-//       {}
-//       <h1>Featured Products</h1>
-//       <div className="product-list">
-//         {products.map((product) => (
-
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default FeaturedProducts;
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { utils } from "../utils/utils";
+
 import "./FeaturedProducts.css";
 
 function FeaturedProducts() {
@@ -41,7 +9,7 @@ function FeaturedProducts() {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/Products");
+      const response = await axios.get(`${utils}/Products`);
       setProducts(response.data);
     } catch (error) {
       console.error("Error fetching products:", error);

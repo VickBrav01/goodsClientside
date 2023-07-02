@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { utils } from "../utils/utils";
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
@@ -12,7 +13,7 @@ function Cart() {
   // Fetch cart items from the backend
   const fetchCartItems = async () => {
     try {
-      const response = await axios.get("http://example.com/api/cart");
+      const response = await axios.get(`${utils}/cart`);
       setCartItems(response.data);
     } catch (error) {
       console.log("Error fetching cart items:", error);
@@ -22,7 +23,7 @@ function Cart() {
   const addToCart = (product) => {
     // Add the product to the backend cart
     axios
-      .post("http://example.com/api/cart", product)
+      .post(`${utils}/cart`, product)
       .then(() => {
         // If successful, update the cart items in the state
         setCartItems([...cartItems, product]);
@@ -35,7 +36,7 @@ function Cart() {
   const removeItem = (item) => {
     // Remove the item from the backend cart
     axios
-      .delete(`http://example.com/api/cart/${item.id}`)
+      .delete(`${utils}/cart/${item.id}`)
       .then(() => {
         // If successful, update the cart items in the state
         const updatedItems = cartItems.filter(

@@ -2,6 +2,7 @@ import "./SignUp.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { userSchema } from "./FormValidation";
+import { utils } from "../utils/utils";
 import Axios from "axios";
 
 function SignUp() {
@@ -26,7 +27,7 @@ function SignUp() {
       .validate(signUp)
       .then((data) => {
         console.log(data);
-        Axios.post("http://localhost:3000/users", data)
+        Axios.post(`${utils}/users`, data)
           .then((response) => {
             console.log(response.data);
           })
